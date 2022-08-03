@@ -11,6 +11,7 @@ public class MainManager : MonoBehaviour
     public Rigidbody Ball;
 
     public Text ScoreText;
+    public Text bestScoreText;
     public GameObject GameOverText;
 
     private bool m_Started = false;
@@ -22,6 +23,15 @@ public class MainManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (GameManager.instance.playerName == null)
+        {
+            bestScoreText.text = "Freeplay Mode, No Save";
+        }
+        else
+        {
+            bestScoreText.text = "Best Score : " + GameManager.instance.currentBestPlayerName + " : " + GameManager.instance.currentBestScore;
+        }
+
         const float step = 0.6f;
         int perLine = Mathf.FloorToInt(4.0f / step);
 
@@ -55,7 +65,14 @@ public class MainManager : MonoBehaviour
         }
         else if (m_GameOver)
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            //return to start
+            if (Input.GetKeyDown(KeyCode.LeftShift))
+            {
+                SceneManager.LoadScene("start menu");
+            }
+
+            //restart game scene
+            if (Input.GetKeyDown(KeyCode.RightShift))
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }
@@ -72,5 +89,23 @@ public class MainManager : MonoBehaviour
     {
         m_GameOver = true;
         GameOverText.SetActive(true);
+
+        //send player data to the list if not in freeplay, they'll get added if they knock anyone out
+        if (GameManager.instance.playerName != null)
+        {
+            GameManager.PlayerData player = new GameManager.PlayerData(GameManager.instance.playerName, m_Points);
+            GameManager.instance.AddPlayerToArray(player);
+        }
+
+        //only gets triggered if overcome the top score, which is playerlist[0]
+        if (m_Points > GameManager.instance.currentBestScore && GameManager.instance.playerName != null)
+        {
+            bestScoreText.text = "New Best Score : " + GameManager.instance.playerName + " : " + m_Points;
+            GameManager.instance.currentBestPlayerName = GameManager.instance.playerName;
+            GameManager.instance.currentBestScore = m_Points;
+        }
+
+        //save after checking if need to add the player to the array and if there is a new best score
+        GameManager.instance.SavePlayerData();
     }
 }

@@ -10,7 +10,12 @@ public class Paddle : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Speed *= GameManager.instance.paddleSpeedSetting;
 
+        if (Speed < 0)
+        {
+            Speed = 0.1f;
+        }
     }
 
     // Update is called once per frame
