@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 112000000, guid: ac4f4e59adae1384caab8dd13a20c235, type: 2}
+  m_LightingDataAsset: {fileID: 112000000, guid: 28ee19d4dea3b5744b9c95dd38e9c700, type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -385,6 +385,9 @@ MonoBehaviour:
   playerName: 
   currentBestPlayerName: ???
   currentBestScore: 0
+  playerList: []
+  paddleSpeedSetting: 1
+  ballVelocitySetting: 1
 --- !u!1 &455529321
 GameObject:
   m_ObjectHideFlags: 0
@@ -973,3 +976,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerNameInput: {fileID: 0}
   currentBestInfo: {fileID: 188020406}
+  paddleSlider: {fileID: 0}
+  ballSlider: {fileID: 0}

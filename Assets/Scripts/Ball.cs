@@ -28,7 +28,12 @@ public class Ball : MonoBehaviour
         //max velocity
         if (velocity.magnitude > (3.0f * GameManager.instance.ballVelocitySetting))
         {
-            velocity = velocity.normalized * (3.0f * GameManager.instance.ballVelocitySetting) + new Vector3(0.1f, 0.1f, 0.1f); //adding the 0.1 vector just in case the velocity is 0
+            velocity = velocity.normalized * (3.0f * GameManager.instance.ballVelocitySetting);
+
+            if (velocity.magnitude <= 0)
+            {
+                velocity += new Vector3(0.1f, 0.1f, 0.1f); //adding the 0.1 vector just in case the velocity is 0
+            }
         }
 
         m_Rigidbody.velocity = velocity;

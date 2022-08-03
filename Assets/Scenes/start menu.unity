@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 112000000, guid: ac4f4e59adae1384caab8dd13a20c235, type: 2}
+  m_LightingDataAsset: {fileID: 112000000, guid: 21f7bf11f8e78b84d80cd3544f12a37d, type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -2307,3 +2307,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerNameInput: {fileID: 1886436238}
   currentBestInfo: {fileID: 188020406}
+  paddleSlider: {fileID: 0}
+  ballSlider: {fileID: 0}

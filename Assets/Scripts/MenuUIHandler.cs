@@ -10,18 +10,20 @@ using UnityEditor;
 #endif
 
 //execute this after game manager to make sure its all loaded up first before setting up the ui
-[DefaultExecutionOrder(1000)] 
+[DefaultExecutionOrder(1000)]
 
 public class MenuUIHandler : MonoBehaviour
 {
     public TMP_InputField playerNameInput;
     public Text currentBestInfo;
+    public Slider paddleSlider;
+    public Slider ballSlider;
 
     // Start is called before the first frame update
     void Start()
     {
         //only run this in the score table scene, maybe change to use string names for scenes
-        if (SceneManager.GetActiveScene().buildIndex == 2)
+        if (SceneManager.GetActiveScene().name == "score table")// .buildIndex == 2)
         {
             currentBestInfo.text = "Score List \nBest Score : " + GameManager.instance.currentBestPlayerName + " : " + GameManager.instance.currentBestScore + "\n";
 
@@ -37,6 +39,12 @@ public class MenuUIHandler : MonoBehaviour
                 }
             }
         }
+
+        if (SceneManager.GetActiveScene().name == "settings")
+        {
+            paddleSlider.value = GameManager.instance.paddleSpeedSetting;
+            ballSlider.value = GameManager.instance.ballVelocitySetting;
+        }
     }
 
     // Update is called once per frame
@@ -46,8 +54,15 @@ public class MenuUIHandler : MonoBehaviour
     }
 
     //to be used only for the settings and score table scenes
-    public void Back() 
+    public void Back()
     {
+        if (SceneManager.GetActiveScene().name == "settings")
+        {
+            GameManager.instance.paddleSpeedSetting = paddleSlider.value;
+            GameManager.instance.ballVelocitySetting = ballSlider.value;
+            GameManager.instance.SavePlayerData();
+        }
+
         SceneManager.LoadScene("start menu");
     }
 
