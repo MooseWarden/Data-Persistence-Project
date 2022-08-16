@@ -29,7 +29,7 @@ public class MenuUIHandler : MonoBehaviour
 
             for (int i = 0; i < 5; i++)
             {
-                if (GameManager.instance.playerList == null) //error check
+                if (GameManager.instance.playerList.Length == 0)// == null) //error check
                 {
                     currentBestInfo.text += "\n none : yet";
                 }

@@ -518,7 +518,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerName: 
-  currentBestPlayerName: 
+  currentBestPlayerName: Noone
   currentBestScore: 0
   playerList: []
   paddleSpeedSetting: 1

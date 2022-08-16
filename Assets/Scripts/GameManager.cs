@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
         playerName = null;
 
         //will only ever be called once in order to give empty data for the programs to work off of
-        if (playerList == null)
+        if (playerList.Length == 0)// == null)
         {
             InitAndPopulateArray();
         }
